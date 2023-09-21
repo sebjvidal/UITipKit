@@ -18,9 +18,7 @@ extension UITipView {
         
         public var actions: [UIAction] = []
         
-        // MARK: - init(title:)
-        public init(title: String) {
-            self.title = title
-        }
+        // MARK: - init()
+        public init() {}
     }
 }
