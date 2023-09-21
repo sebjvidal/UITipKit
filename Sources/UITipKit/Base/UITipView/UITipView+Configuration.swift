@@ -12,7 +12,7 @@ extension UITipView {
         // MARK: - Public Properties
         public var image: UIImage? = nil
         
-        public var title: String
+        public var title: String? = nil
         
         public var message: String? = nil
         
