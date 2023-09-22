@@ -11,7 +11,6 @@ import UIKit
 
 public class UITipView: UIView {
     // MARK: - Private Properties
-
     private var contentView: UIView!
     private var _closeButton: UIButton!
     private var imageView: UIImageView!
@@ -21,7 +20,6 @@ public class UITipView: UIView {
     private var separatorViews: [UIView] = []
 
     // MARK: - Public Properties
-
     public var closeButton: UIButton {
         return _closeButton
     }
@@ -35,7 +33,6 @@ public class UITipView: UIView {
     }
 
     // MARK: - init(frame:)
-
     override public init(frame: CGRect) {
         super.init(frame: frame)
         setupContentView()
@@ -46,13 +43,11 @@ public class UITipView: UIView {
     }
 
     // MARK: - init?(coder:)
-
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     // MARK: - Private Methods
-
     private func setupContentView() {
         contentView = UIView()
         contentView.clipsToBounds = true
@@ -115,8 +110,8 @@ public class UITipView: UIView {
 
     private func setupActionsButtons(for actions: [UIAction]?) {
         actionButtons.forEach { $0.removeFromSuperview() }
-
         actionButtons.removeAll()
+        
         actions?.compactMap { $0 }.forEach { action in
             let actionButton = UIButton(type: .system)
             actionButton.setTitle(action.title, for: .normal)
@@ -155,7 +150,7 @@ public class UITipView: UIView {
 
     private func _intrinsicContentSize() -> CGSize {
         let subviews = contentView.subviews.sorted { lhs, rhs in
-            lhs.frame.maxY > rhs.frame.maxY
+            return lhs.frame.maxY > rhs.frame.maxY
         }
 
         let width = window?.frame.width ?? -1
@@ -178,7 +173,6 @@ public class UITipView: UIView {
     }
 
     // MARK: - layoutSubviews()
-
     override public func layoutSubviews() {
         super.layoutSubviews()
         layoutCloseButton()
@@ -204,7 +198,7 @@ public class UITipView: UIView {
             let x: CGFloat = 9
             let y: CGFloat = 15
             let width: CGFloat = 52.333
-            let height = width / (image.size.width / image.size.height)
+            let height = width / image.size.aspectRatio
             imageView.frame = CGRect(x: x, y: y, width: width, height: height)
         } else {
             imageView.frame = CGRect.zero
@@ -232,17 +226,17 @@ public class UITipView: UIView {
     }
 
     private func layoutMessageLabel() {
-        guard configuration?.message != nil else {
+        if let _ = configuration?.message {
+            let maxWidth = frame.width - titleLabel.frame.minX - 12
+            let maxSize = CGSize(width: maxWidth, height: frame.height)
+            messageLabel.frame.size = messageLabel.sizeThatFits(maxSize)
+            
+            let x: CGFloat = titleLabel.frame.origin.x
+            let y: CGFloat = titleLabel.frame.maxY + 4
+            messageLabel.frame.origin = CGPoint(x: x, y: y)
+        } else {
             messageLabel.frame = .zero
-            return
         }
-        let maxWidth = frame.width - titleLabel.frame.minX - 12
-        let maxSize = CGSize(width: maxWidth, height: frame.height)
-        messageLabel.frame.size = messageLabel.sizeThatFits(maxSize)
-
-        let x: CGFloat = titleLabel.frame.origin.x
-        let y: CGFloat = titleLabel.frame.maxY + 4
-        messageLabel.frame.origin = CGPoint(x: x, y: y)
     }
 
     private func layoutActionButtons() {
