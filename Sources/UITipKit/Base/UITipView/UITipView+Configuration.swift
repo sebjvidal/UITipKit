@@ -7,19 +7,19 @@
 
 import UIKit
 
-extension UITipView {
-    public struct Configuration {
+public extension UITipView {
+    struct Configuration {
         // MARK: - Public Properties
-        public var image: UIImage? = nil
-        
-        public var title: String? = nil
-        
-        public var message: String? = nil
-        
+        public var image: UIImage?
+
+        public var title: String?
+
+        public var message: String?
+
         public var actions: [UIAction] = []
-        
-        public var background: Background = Background()
-        
+
+        public var background: Background = .init()
+
         // MARK: - init()
         public init() {}
     }
