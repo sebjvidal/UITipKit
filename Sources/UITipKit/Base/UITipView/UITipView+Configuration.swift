@@ -18,6 +18,8 @@ extension UITipView {
         
         public var actions: [UIAction] = []
         
+        public var background: Background = Background()
+        
         // MARK: - init()
         public init() {}
     }

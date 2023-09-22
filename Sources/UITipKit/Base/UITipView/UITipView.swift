@@ -143,6 +143,9 @@ public class UITipView: UIView {
         setupActionsButtons(for: configuration?.actions)
         setupSeparatorViews(for: actionButtons)
         
+        contentView.backgroundColor = configuration?.background.backgroundColor ?? .secondarySystemBackground
+        contentView.layer.cornerRadius = configuration?.background.cornerRadius ?? 12
+        
         layoutSubviews()
     }
     
