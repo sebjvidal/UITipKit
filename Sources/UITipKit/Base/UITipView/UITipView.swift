@@ -117,19 +117,17 @@ public class UITipView: UIView {
         actionButtons.forEach { $0.removeFromSuperview() }
 
         actionButtons.removeAll()
-        actions?
-            .compactMap { $0 }
-            .forEach { action in
-                let actionButton = UIButton(type: .system)
-                actionButton.setTitle(action.title, for: .normal)
-                actionButton.setTitleColor(.tintColor, for: .normal)
-                actionButton.addAction(action, for: .touchUpInside)
-                actionButton.contentHorizontalAlignment = .leading
-                actionButton.titleLabel?.font = .preferredFont(forTextStyle: .body)
+        actions?.compactMap { $0 }.forEach { action in
+            let actionButton = UIButton(type: .system)
+            actionButton.setTitle(action.title, for: .normal)
+            actionButton.setTitleColor(.tintColor, for: .normal)
+            actionButton.addAction(action, for: .touchUpInside)
+            actionButton.contentHorizontalAlignment = .leading
+            actionButton.titleLabel?.font = .preferredFont(forTextStyle: .body)
 
-                actionButtons.append(actionButton)
-                contentView.addSubview(actionButton)
-            }
+            actionButtons.append(actionButton)
+            contentView.addSubview(actionButton)
+        }
     }
 
     private func setupSeparatorViews(for actionButtons: [UIButton]) {
