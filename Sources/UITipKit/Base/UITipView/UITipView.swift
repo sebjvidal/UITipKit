@@ -49,8 +49,8 @@ public class UITipView: UIView {
         contentView.clipsToBounds = true
         contentView.layer.cornerRadius = 12
         contentView.layer.cornerCurve = .continuous
+        contentView.backgroundColor = .secondarySystemBackground
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = UIColor(named: "TipBackgroundColor", in: .module, compatibleWith: traitCollection)
         
         addSubview(contentView)
         
