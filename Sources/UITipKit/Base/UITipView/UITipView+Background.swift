@@ -7,11 +7,11 @@
 
 import UIKit
 
-extension UITipView.Configuration {
-    public struct Background {
+public extension UITipView.Configuration {
+    struct Background {
         // MARK: - Public Properties
         public var backgroundColor: UIColor = .secondarySystemBackground
-        
+
         public var cornerRadius: CGFloat = 12
     }
 }
