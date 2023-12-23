@@ -13,5 +13,8 @@ public extension UITipView.Configuration {
         public var backgroundColor: UIColor = .secondarySystemBackground
 
         public var cornerRadius: CGFloat = 12
+        
+        // MARK: - init()
+        internal init() {}
     }
 }
