@@ -135,8 +135,15 @@ public class UITipView: UIView {
     
     private func updateUI(for configuration: UITipView.Configuration?) {
         closeButton.isHidden = configuration?.closeButton.isHidden == true
+        closeButton.removeActions(for: .touchUpInside)
+        
+        if let action = configuration?.closeButton.action {
+            closeButton.addAction(action, for: .touchUpInside)
+        }
+        
         imageView.image = configuration?.image
         imageView.tintColor = configuration?.imageProperties.tintColor
+        
         titleLabel.text = configuration?.title
         messageLabel.text = configuration?.message
         setupActionsButtons(for: configuration?.actions)
