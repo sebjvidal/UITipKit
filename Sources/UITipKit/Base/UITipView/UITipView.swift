@@ -27,7 +27,7 @@ public class UITipView: UIView {
     }
     
     override public var intrinsicContentSize: CGSize {
-        return _intrinsicContentSize()
+        return calculateIntrinsicContentSize()
     }
     
     // MARK: - init(frame:)
@@ -81,12 +81,9 @@ public class UITipView: UIView {
         _closeButton = UIButton(type: .system)
         _closeButton.tintColor = .quaternaryLabel
         _closeButton.setImage(image, for: .normal)
-        _closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
         
         contentView.addSubview(_closeButton)
     }
-    
-    @objc private func closeButtonTapped(_: UIButton) {}
     
     private func setupImageView() {
         imageView = UIImageView()
@@ -141,6 +138,7 @@ public class UITipView: UIView {
     }
     
     private func updateUI(for configuration: UITipView.Configuration?) {
+        closeButton.isHidden = configuration?.closeButton.isHidden == true
         imageView.image = configuration?.image
         imageView.tintColor = configuration?.imageProperties.tintColor
         titleLabel.text = configuration?.title
@@ -154,7 +152,7 @@ public class UITipView: UIView {
         layoutSubviews()
     }
     
-    private func _intrinsicContentSize() -> CGSize {
+    private func calculateIntrinsicContentSize() -> CGSize {
         let subviews = contentView.subviews.sorted { lhs, rhs in
             return lhs.frame.maxY > rhs.frame.maxY
         }
