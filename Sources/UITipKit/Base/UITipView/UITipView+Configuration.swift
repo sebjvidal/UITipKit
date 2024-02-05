@@ -21,14 +21,10 @@ public extension UITipView {
         public var actions: [UIAction] = []
 
         public var background: Background = Background()
+        
+        public var closeButton: CloseButton = CloseButton()
 
         // MARK: - init()
         public init() {}
-    }
-}
-
-public extension UITipView.Configuration {
-    struct ImageProperties {
-        public var tintColor: UIColor? = nil
     }
 }
