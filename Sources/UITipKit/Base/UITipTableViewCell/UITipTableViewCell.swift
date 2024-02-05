@@ -40,6 +40,7 @@ public class UITipTableViewCell: UITableViewCell {
     // MARK: - Private Methods
     private func setupTableViewCell() {
         selectionStyle = .none
+        backgroundColor = .clear
     }
     
     private func setupTipView() {
