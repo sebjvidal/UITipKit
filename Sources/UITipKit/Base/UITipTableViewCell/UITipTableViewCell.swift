@@ -12,16 +12,12 @@ public class UITipTableViewCell: UITableViewCell {
     private var tipView: UITipView!
     
     // MARK: - Public Properties
-    public var closeButton: UIButton {
-        return tipView.closeButton
-    }
-    
     public var configuration: UITipView.Configuration? {
         get {
             return tipView.configuration
         } set {
             tipView.configuration = newValue
-            contentView.layoutIfNeeded()
+            contentView.invalidateIntrinsicContentSize()
         }
     }
     
@@ -58,5 +54,11 @@ public class UITipTableViewCell: UITableViewCell {
             tipView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             tipView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+    
+    // MARK: - layoutSubviews()
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.invalidateIntrinsicContentSize()
     }
 }
