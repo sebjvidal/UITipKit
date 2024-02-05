@@ -10,7 +10,7 @@ import UIKit
 public class UITipView: UIView {
     // MARK: - Private Properties
     private var contentView: UIView!
-    private var _closeButton: UIButton!
+    private var closeButton: UIButton!
     private var imageView: UIImageView!
     private var titleLabel: UILabel!
     private var messageLabel: UILabel!
@@ -18,10 +18,6 @@ public class UITipView: UIView {
     private var separatorViews: [UIView] = []
     
     // MARK: - Public Properties
-    public var closeButton: UIButton {
-        return _closeButton
-    }
-    
     public var configuration: UITipView.Configuration? = nil {
         didSet { updateUI(for: configuration) }
     }
@@ -78,11 +74,11 @@ public class UITipView: UIView {
             .applyingSymbolConfiguration(sizeConfig)?
             .applyingSymbolConfiguration(weightConfig)
         
-        _closeButton = UIButton(type: .system)
-        _closeButton.tintColor = .quaternaryLabel
-        _closeButton.setImage(image, for: .normal)
+        closeButton = UIButton(type: .system)
+        closeButton.tintColor = .quaternaryLabel
+        closeButton.setImage(image, for: .normal)
         
-        contentView.addSubview(_closeButton)
+        contentView.addSubview(closeButton)
     }
     
     private func setupImageView() {
@@ -165,7 +161,7 @@ public class UITipView: UIView {
             height += 14
         case titleLabel:
             height += 16
-        case _closeButton:
+        case closeButton:
             height += 15
         case messageLabel:
             height += 16
@@ -189,12 +185,12 @@ public class UITipView: UIView {
     }
     
     private func layoutCloseButton() {
-        let size = _closeButton.sizeThatFits(frame.size)
+        let size = closeButton.sizeThatFits(frame.size)
         let x = frame.width - size.width - 13
         let y: CGFloat = 15
         
-        _closeButton.frame.size = size
-        _closeButton.frame.origin = CGPoint(x: x, y: y)
+        closeButton.frame.size = size
+        closeButton.frame.origin = CGPoint(x: x, y: y)
     }
     
     private func layoutImageView() {
@@ -211,7 +207,7 @@ public class UITipView: UIView {
     
     private func layoutTitleLabel() {
         if let _ = imageView.image {
-            let maxWidth = frame.width - imageView.frame.maxX - _closeButton.frame.width - 28
+            let maxWidth = frame.width - imageView.frame.maxX - closeButton.frame.width - 28
             let maxSize = CGSize(width: maxWidth, height: frame.height)
             titleLabel.frame.size = titleLabel.sizeThatFits(maxSize)
             
@@ -219,7 +215,7 @@ public class UITipView: UIView {
             let y: CGFloat = imageView.frame.minY - 1
             titleLabel.frame.origin = CGPoint(x: x, y: y)
         } else {
-            let maxWidth = frame.width - _closeButton.frame.width - 28
+            let maxWidth = frame.width - closeButton.frame.width - 28
             let maxSize = CGSize(width: maxWidth, height: frame.height)
             titleLabel.frame.size = titleLabel.sizeThatFits(maxSize)
             
