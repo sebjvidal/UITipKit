@@ -269,7 +269,7 @@ public class UITipView: UIView {
         let width = frame.width - x
         let height: CGFloat = 1.0 / 3.0
         
-        for (index, separatorView) in separatorViews.enumerated() {
+        for (index, separatorView) in separatorViews.enumerated() where separatorViews.indices.contains(index) {
             let y = actionButtons[index].frame.origin.y
             separatorView.frame = CGRect(x: x, y: y, width: width, height: height)
         }
