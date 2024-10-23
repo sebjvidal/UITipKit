@@ -21,6 +21,14 @@ public class UITipCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    public override var layoutMargins: UIEdgeInsets {
+        get {
+            return contentView.layoutMargins
+        } set {
+            contentView.layoutMargins = newValue
+        }
+    }
+    
     // MARK: - init(frame:)
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,6 +50,7 @@ public class UITipCollectionViewCell: UICollectionViewCell {
     // MARK: - Private Methods
     private func setupCollectionViewCell() {
         backgroundColor = .clear
+        layoutMargins = .zero
     }
     
     private func setupTipView() {
@@ -54,10 +63,10 @@ public class UITipCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(tipView)
         
         NSLayoutConstraint.activate([
-            tipView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            tipView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            tipView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            tipView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            tipView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            tipView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            tipView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            tipView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
     
